@@ -1,0 +1,13 @@
+<% provide(:title, 'Edit Publisher') %>
+<h1>Edit publisher</h1>
+	<%= form_for(mm_ordinary_publisher_path(MOrdinaryPublisher.find(params[:id]))) do |f| %>
+		<%#= render 'shared/error_message' %>
+
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<%= f.label :url %>
+		<%= f.text_field :url %>
+
+		<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+	<% end %>

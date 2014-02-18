@@ -1,12 +1,17 @@
 Sdm001::Application.routes.draw do
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]
+	resources :m_ordinary_publishers
+	resources :m_ordinary_channels
 
   #get "users/new"
   
 	root to: 'sessions#new'
 	match '/signin', to: 'sessions#new', via: 'get'
 	match '/signout', to: 'sessions#destroy', via: 'delete'
+	match '/create_ordinary_publisher', to: 'm_ordinary_publishers#new', via: 'get'
+#	match '/create_ordinary_channel', to, 'm_ordinary_channel#new', via: 'get'
+#	match '/publishers', to: 'mm_ordinary_publishers#index', via: 'get'
 	
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

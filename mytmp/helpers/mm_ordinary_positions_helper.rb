@@ -1,0 +1,2 @@
+module MmOrdinaryPositionsHelper
+end

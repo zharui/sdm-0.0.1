@@ -1,0 +1,2 @@
+class MmOrdinaryChannelsController < ApplicationController
+end

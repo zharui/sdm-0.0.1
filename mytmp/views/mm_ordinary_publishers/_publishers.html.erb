@@ -1,0 +1,34 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Url</th>
+			<th>State</th>
+			<th>Created User</th>
+			<th>Modified User</th>
+			<th>Created Time</th>
+			<th>Updated Time</th>
+			<th>Operation</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @mm_ordinary_publishers.each do |publisher| %>
+		<tr>
+			<td><%= publisher.id %></td>
+			<td><%= publisher.name %></td>
+			<td><%= publisher.url %></td>
+			<td><%= MState.find_by(id: publisher.state_id).name %></td>
+			<td><%= User.find_by(id: publisher.created_user_id).name %></td>
+			<td><%= User.find_by(id: publisher.modified_user_id).name %></td>
+			<td><%= publisher.created_at %></td>
+			<td><%= publisher.updated_at %></td>
+			<td><%= link_to "Update", edit_mm_ordinary_publisher_path(publisher) %> 
+					| 
+					<%= link_to "Delete", { controller: "mm_ordinary_publishers", action: :destroy, id: publisher.id },
+																{ confirm: "Are you sure?", method: :delete } %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

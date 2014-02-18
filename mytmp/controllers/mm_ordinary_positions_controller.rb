@@ -1,0 +1,2 @@
+class MmOrdinaryPositionsController < ApplicationController
+end
