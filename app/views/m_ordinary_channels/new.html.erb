@@ -1,0 +1,21 @@
+<% provide(:title, 'Create channel') %>
+<h1>Create channel</h1>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@channel) do |f| %>
+			<%= render 'shared/channel_error_messages' %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+
+			<%= f.label :url %>
+			<%= f.text_field :url %>
+
+			<%= f.label :state %>	
+			<%= f.select :state_id, options_for_select(MState.all.collect { |state| state.name })  %>
+
+			<%= hidden_field_tag :publisher_id, params[:publisher_id] %>
+
+			<%= f.submit "Create channel", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

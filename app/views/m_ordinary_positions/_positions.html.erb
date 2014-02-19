@@ -1,0 +1,44 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Url</th>
+			<th>State</th>
+			<th>Material Type</th>
+			<th>Dimension</th>
+			<th>Layout</th>
+			<th>Format</th>
+			<th>Size</th>
+			<th>Serving Type</th>
+			<th>Payment Type</th>
+			<th>Modified User</th>
+			<th>Modified Time</th>
+			<th>Operation</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @m_ordinary_positions.each do |position| %>
+		<tr>
+			<td><%= position.id %></td>
+			<td><%= position.name %></td>
+			<td><%= position.url %></td>
+			<td><%= MState.find_by(id: position.state_id).name %></td>
+			<td><%= MMaterial.find_by(id: position.material_id).name %></td>
+			<td><%= MDimension.find_by(id: position.dimension_id).name %></td>
+			<td><%= MLayout.find_by(id: position.layout_id).name %></td>
+			<td><%= MFormat.find_by(id: position.format_id).name %></td>
+			<td><%= position.size %></td>
+			<td><%= MServingType.find_by(id: position.serving_id).name %></td>
+			<td><%= MPaymentType.find_by(id: position.payment_id).name %></td>
+			<td><%= User.find_by(id: position.modified_user_id).name %></td>
+			<td><%= position.updated_at %></td>
+			<td><%= link_to "Update", "/m_ordinary_positions/#{position.id}/edit?publisher_id=#{params[:publisher_id]}&channel_id=#{params[:channel_id]}" %> 
+					| 
+					<%= link_to "Delete", { controller: "m_ordinary_positions", action: :destroy, id: position.id },
+																{ confirm: "Are you sure?", method: :delete } %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

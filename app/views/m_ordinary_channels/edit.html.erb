@@ -1,7 +1,7 @@
 <% provide(:title, 'Edit Publisher') %>
-<h1>Edit publisher</h1>
-	<%= form_for(@publisher) do |f| %>
-		<%= render 'shared/publisher_error_messages' %>
+<h1>Edit channel</h1>
+	<%= form_for(@channel) do |f| %>
+		<%= render 'shared/channel_error_messages' %>
 
 		<%= f.label :name %>
 		<%= f.text_field :name %>
@@ -11,6 +11,8 @@
 	
 		<%= f.label :state %>	
 		<%= f.select :state_id, options_for_select(MState.all.collect { |state| state.name })  %>	
+
+		<%= hidden_field_tag :publisher_id, params[:publisher_id] %>
 
 		<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 	<% end %>

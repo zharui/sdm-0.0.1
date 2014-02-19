@@ -5,10 +5,10 @@
 			<th>Name</th>
 			<th>Url</th>
 			<th>State</th>
-			<th>Created User</th>
+			<th>channel number</th>
+			<th>position number</th>
 			<th>Modified User</th>
-			<th>Created Time</th>
-			<th>Updated Time</th>
+			<th>Modified Time</th>
 			<th>Operation</th>
 		</tr>
 	</thead>
@@ -16,12 +16,12 @@
 	<% @m_ordinary_publishers.each do |publisher| %>
 		<tr>
 			<td><%= publisher.id %></td>
-			<td><%= link_to publisher.name, '#' %></td>
+			<td><%= link_to publisher.name, { controller: "m_ordinary_channels", action: :index, publisher_id: publisher.id } %></td>
 			<td><%= publisher.url %></td>
 			<td><%= MState.find_by(id: publisher.state_id).name %></td>
-			<td><%= User.find_by(id: publisher.created_user_id).name %></td>
+			<td><%= MOrdinaryChannel.find(:all, conditions: ['m_ordinary_publisher_id = ?', publisher.id]).size %></td>
+			<td><%= MOrdinaryPosition.find(:all, conditions: ['m_ordinary_publisher_id = ?', publisher.id]).size %></td>
 			<td><%= User.find_by(id: publisher.modified_user_id).name %></td>
-			<td><%= publisher.created_at %></td>
 			<td><%= publisher.updated_at %></td>
 			<td><%= link_to "Update", edit_m_ordinary_publisher_path(publisher) %> 
 					| 

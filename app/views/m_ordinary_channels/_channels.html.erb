@@ -1,0 +1,32 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Url</th>
+			<th>State</th>
+			<th>position number</th>
+			<th>Modified User</th>
+			<th>Modified Time</th>
+			<th>Operation</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @m_ordinary_channels.each do |channel| %>
+		<tr>
+			<td><%= channel.id %></td>
+			<td><%= link_to channel.name, m_ordinary_positions_path(publisher_id: params[:publisher_id], channel_id: channel.id) %></td>
+			<td><%= channel.url %></td>
+			<td><%= MState.find_by(id: channel.state_id).name %></td>
+			<td><%= MOrdinaryPosition.find(:all, conditions: ['m_ordinary_channel_id = ?', channel.id]).size %></td>
+			<td><%= User.find_by(id: channel.modified_user_id).name %></td>
+			<td><%= channel.updated_at %></td>
+			<td><%= link_to "Update", "/m_ordinary_channels/#{channel.id}/edit?publisher_id=#{params[:publisher_id]}" %> 
+					| 
+					<%= link_to "Delete", { controller: "m_ordinary_channels", action: :destroy, id: channel.id },
+																{ confirm: "Are you sure?", method: :delete } %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

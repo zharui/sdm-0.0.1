@@ -1,20 +1,22 @@
-<% provide(:title, 'ordinary publishers') %>
-<h1>Ordinary Publishers</h1>
+<% provide(:title, 'ordinary positions') %>
+<h1>Ordinary Positions</h1>
 
 <%#= select_tag :itemNum, options_from_collection_for_select(ItemNum.all, 'id', 'num'), include_blank: false, style: "width:70px" , onchange: "if(this.value){window.location='?num='+this.value;}"%>
-<%= select_tag :per_page, options_for_select(PerPage.all.collect { |items| items.per_page }, @per_page.to_i), :onchange => "if(this.value){window.location='?per_page='+this.value;}", style: "width: 70px" %>
+<%= select_tag :per_page, options_for_select(PerPage.all.collect { |items| items.per_page }, @per_page.to_i), onchange: "if(this.value){window.location='?per_page='+this.value+'&publisher_id='+gon.publisher_id+'&channel_id='+gon.channel_id;}", style: "width: 70px" %>
 <%#= select_tag :search_type, options_for_select(['id', 'name']), :onchange => "if(this.value){window.location='?search_type='+this.value;}", style: "width: 70px" %>
 <%#= select "ItemNum", "num", ItemNum.all.collect { |item| [item.num, item.id] },  include_blank: false %>
-<%= form_tag m_ordinary_publishers_path, method: :get do %>
+<%= form_tag m_ordinary_positions_path, method: :get do %>
 	<p>
 		<%= select_tag :search_type, options_for_select(['id', 'name']) %>
 		<%= text_field_tag :search, params[:search] %>
+		<%= hidden_field_tag :publisher_id, params[:publisher_id] %>
+		<%= hidden_field_tag :channel_id, params[:channel_id] %>
 		<%= submit_tag "Search", name: nil %>
 	</p>
 <% end %>
-<%= link_to "Create publisher", create_ordinary_publisher_path, class: "btn btn-primary" %>
+<%= link_to "Create position", new_m_ordinary_position_path(publisher_id: params[:publisher_id], channel_id: params[:channel_id]) %>
 <%= will_paginate %>
-<%= render 'publishers' %>
+<%= render 'positions' %>
 <%= will_paginate %>
 
 

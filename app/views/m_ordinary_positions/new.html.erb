@@ -1,0 +1,43 @@
+<% provide(:title, 'Create position') %>
+<h1>Create position</h1>
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@position) do |f| %>
+			<%= render 'shared/position_error_messages' %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+
+			<%= f.label :url %>
+			<%= f.text_field :url %>
+
+			<%= f.label :state %>	
+			<%= f.select :state_id, options_for_select(MState.all.collect { |state| state.name })  %>
+
+			<%= f.label :material %>
+			<%= f.select :material_id, options_for_select(MMaterial.all.collect { |material| material.name }) %>
+
+			<%= f.label :dimension %>
+			<%= f.select :dimension_id, options_for_select(MDimension.all.collect { |dimension| dimension.name }) %>
+
+			<%= f.label :layout %>
+			<%= f.select :layout_id, options_for_select(MLayout.all.collect { |layout| layout.name }) %>
+
+			<%= f.label :format %>
+			<%= f.select :format_id, options_for_select(MFormat.all.collect { |format| format.name }) %>
+
+			<%= f.label :size %>
+			<%= f.text_field :size %>
+
+			<%= f.label :serving %>
+			<%= f.select :serving_id, options_for_select(MServingType.all.collect { |serving| serving.name }) %>
+
+			<%= f.label :payment %>
+			<%= f.select :payment_id, options_for_select(MPaymentType.all.collect { |payment| payment.name }) %>
+
+			<%= hidden_field_tag :publisher_id, params[:publisher_id] %>
+			<%= hidden_field_tag :channel_id, params[:channel_id] %>
+
+			<%= f.submit "Create position", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

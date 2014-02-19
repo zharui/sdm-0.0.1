@@ -6,6 +6,12 @@ gem 'rails', '4.0.2'
 
 gem 'bootstrap-sass', '2.3.2.0'
 
+gem 'gon'
+
+#gem 'rabl-rails'
+
+gem 'railties', '4.0.2'
+
 #gem 'bcrypt-ruby', '3.0.1'
 
 gem 'bcrypt-ruby', '3.1.2'

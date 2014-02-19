@@ -1,8 +1,10 @@
 Sdm001::Application.routes.draw do
 	resources :users
 	resources :sessions, only: [:new, :create, :destroy]
-	resources :m_ordinary_publishers
+	resources :m_ordinary_publishers  
 	resources :m_ordinary_channels
+	resources :m_ordinary_positions
+	
 
   #get "users/new"
   
@@ -10,7 +12,10 @@ Sdm001::Application.routes.draw do
 	match '/signin', to: 'sessions#new', via: 'get'
 	match '/signout', to: 'sessions#destroy', via: 'delete'
 	match '/create_ordinary_publisher', to: 'm_ordinary_publishers#new', via: 'get'
-#	match '/create_ordinary_channel', to, 'm_ordinary_channel#new', via: 'get'
+#	match '/create_ordinary_channel', to: 'm_ordinary_channels#new', via: 'get'
+	match '/edit_m_ordinary_channel', to: 'm_ordinary_channels#edit', via: 'get'
+#	match '/create_ordinary_position', to: 'm_ordinary_positions#new', via: 'get'
+	match '/edit_m_ordinary_position', to: 'm_ordinary_positions#edit', via: 'get'
 #	match '/publishers', to: 'mm_ordinary_publishers#index', via: 'get'
 	
   # The priority is based upon order of creation: first created -> highest priority.

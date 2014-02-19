@@ -1,4 +1,5 @@
 class MOrdinaryPublisher < ActiveRecord::Base	
+	has_many :m_ordinary_channels, dependent: :destroy
 	before_save do
 		self.name = name.downcase
 		self.url = url.downcase
@@ -6,9 +7,15 @@ class MOrdinaryPublisher < ActiveRecord::Base
 	validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
 	validates :url, presence: true
 	
-	def self.search(search)
-		if search
-			find(:all, conditions: ['id = ? OR name LIKE ?',  search.to_i, "%#{search}%"])
+	def self.search(type, keywords)
+		if type and keywords and !keywords.empty?
+			if type == 'id'
+				find(:all, conditions: ['id = ?', keywords.to_i])
+			elsif type == 'name'
+				find(:all, conditions: ['name LIKE ?', "%#{keywords}%"])
+			else
+				find(:all)
+			end
 		else
 			find(:all)
 		end

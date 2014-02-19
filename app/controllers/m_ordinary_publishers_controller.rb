@@ -6,7 +6,7 @@ class MOrdinaryPublishersController < ApplicationController
 			@per_page = 10
 		end
 #		@m_ordinary_publishers = MOrdinaryPublisher.paginate(page: params[:page], per_page: @per_page)
-		@m_ordinary_publishers = MOrdinaryPublisher.paginate(page: params[:page], per_page: @per_page).search(params[:search])
+		@m_ordinary_publishers = MOrdinaryPublisher.paginate(page: params[:page], per_page: @per_page).search(params[:search_type], params[:search])
 	end
 
 	def new
